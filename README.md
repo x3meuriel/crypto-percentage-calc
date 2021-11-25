@@ -3,7 +3,7 @@
 
  ## INSTALLATION 
 
- clone url [Git repo](/crypto-currency-percentage-calc)
+ clone url [Git repo](/)
 
  currently, its still in development mode but my server has been hosted below 
 
