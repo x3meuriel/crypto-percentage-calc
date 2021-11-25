@@ -3,8 +3,8 @@
 
  ## INSTALLATION 
 
- clone url [Git repo](https:github.com/x3meuriel/crypto-currency-percentage-calculator)
+ clone url [Git repo](https:github.com/x3meuriel/crypto-currency-percentage-calc)
 
- currently its still in developement mode and my server is not yet hosted 
+ currently its still in developement mode but my server has been hosted below
 
- GH PAGES [FRONTEND GH PAGES](https://x3meuriel.github.io/crypto-currency-percentage-calculator/)
+ GOTO [WEBSITE](https://pacific-basin-11511.herokuapp.com/)

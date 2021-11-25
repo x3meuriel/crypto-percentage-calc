@@ -26,7 +26,7 @@ const percentageHandler = (amount, percentage) => {
 const getCurrencyHandler = async () =>{
 
     try{
-        const currencyFetch = await axios.get('https://nameless-cove-59330.herokuapp.com/allcurrency');
+        const currencyFetch = await axios.get('https://pacific-basin-11511.herokuapp.com/allcurrency');
         if(currencyFetch.data.data.data){
             return currencyFetch.data.data.data;
         }
