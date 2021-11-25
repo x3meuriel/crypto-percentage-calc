@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "(cd client && yarn run build) && (cd ../ && yarn run server)",
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "nodemon": "nodemon .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
