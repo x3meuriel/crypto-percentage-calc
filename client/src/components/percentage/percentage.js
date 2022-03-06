@@ -38,6 +38,17 @@ const getCurrencyHandler = async () =>{
     }   
 }
 
+const handleCurrency = (currency, jsonData)=>{
+   const currencyArr = [...jsonData ] 
+    currency = currency.toUpperCase()
+   const data = currencyArr.filter((item)=>{
+         return item.symbol.includes(currency)
+    });
+
+    console.log(currencyArr)
+    return data;
+}
+
  
 const PercentageDisplay = (props)=>{
 
@@ -54,6 +65,7 @@ const PercentageDisplay = (props)=>{
     const [currency, setCurrency] = useState(JsonCurrency.data);
     const [currencyValue, setCurrencyValue] = useState(null)
     const [currencyName, setCurrencyName] = useState('Currency')
+    const [filteredCurrency, setfilteredCurrency] = useState('')
 
 
     useEffect( ()=>{
@@ -72,6 +84,27 @@ const PercentageDisplay = (props)=>{
         
     }, [currencyName])
 
+    // useEffect(()=>{
+
+    //     // setCurrency(handleCurrency(filteredCurrency, currency))
+
+    //     if(handleCurrency(filteredCurrency, currency) < 1){
+    //         setCurrency(JsonCurrency.data)
+    //     }
+
+    //     else{
+    //         setCurrency(handleCurrency(filteredCurrency, currency))
+    //     }
+
+
+    //     return () =>{
+    //         window.removeEventListener('change', setfilteredCurrency)
+    //     }
+
+
+    // }, [filteredCurrency, currency])
+ 
+     
 
     return(
     <Container fluid>
@@ -108,10 +141,20 @@ const PercentageDisplay = (props)=>{
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                    {currencyName}
                 </Dropdown.Toggle>
+                
+                
 
                 <Dropdown.Menu >
+                   <Form.Control  type = 'search' placeholder='Search Currency' onChange = {(event)=> {
+
+                        
+                        setCurrency(handleCurrency(event.target.value, currency)) 
+                        // setfilteredCurrency(event.target.value)
+                        // setCurrency(handleCurrency(filteredCurrency, currency)) 
+                   }
+                   }/>    
                 { 
-                
+                  
                     typeof(currency) === 'object' ? 
                     currency.map((item) =>{
                     return <Dropdown.Item
