@@ -45,7 +45,7 @@ const handleCurrency = (currency, jsonData)=>{
          return item.symbol.includes(currency)
     });
 
-    console.log(currencyArr)
+    console.log(data)
     return data;
 }
 
@@ -62,11 +62,10 @@ const PercentageDisplay = (props)=>{
 
 
 
-    const [currency, setCurrency] = useState(JsonCurrency.data);
-    const [currencyValue, setCurrencyValue] = useState(null)
+    
     const [currencyName, setCurrencyName] = useState('Currency')
     const [filteredCurrency, setfilteredCurrency] = useState('')
-
+    const [currency, setCurrency] = useState(handleCurrency( filteredCurrency, JsonCurrency.data));
 
     useEffect( ()=>{
         const fetchData = async ()=>{
@@ -84,25 +83,14 @@ const PercentageDisplay = (props)=>{
         
     }, [currencyName])
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //     // setCurrency(handleCurrency(filteredCurrency, currency))
+        setCurrency(handleCurrency(filteredCurrency, JsonCurrency.data))
+        return () =>{
+            window.removeEventListener('change', setfilteredCurrency)
+        }
 
-    //     if(handleCurrency(filteredCurrency, currency) < 1){
-    //         setCurrency(JsonCurrency.data)
-    //     }
-
-    //     else{
-    //         setCurrency(handleCurrency(filteredCurrency, currency))
-    //     }
-
-
-    //     return () =>{
-    //         window.removeEventListener('change', setfilteredCurrency)
-    //     }
-
-
-    // }, [filteredCurrency, currency])
+    }, [filteredCurrency])
  
      
 
@@ -145,13 +133,9 @@ const PercentageDisplay = (props)=>{
                 
 
                 <Dropdown.Menu >
-                   <Form.Control  type = 'search' placeholder='Search Currency' onChange = {(event)=> {
-
-                        
-                        setCurrency(handleCurrency(event.target.value, currency)) 
-                        // setfilteredCurrency(event.target.value)
-                        // setCurrency(handleCurrency(filteredCurrency, currency)) 
-                   }
+                   <Form.Control  type = 'search' placeholder='Search Currency' onChange = {(event)=> { 
+                        setfilteredCurrency(event.target.value)
+                     }
                    }/>    
                 { 
                   
@@ -173,6 +157,8 @@ const PercentageDisplay = (props)=>{
     </Container>
     )
 }
+
+
 
 
 export default PercentageDisplay
