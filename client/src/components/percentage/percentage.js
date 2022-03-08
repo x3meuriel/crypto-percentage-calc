@@ -66,16 +66,18 @@ const PercentageDisplay = (props)=>{
     const [currencyName, setCurrencyName] = useState('Currency')
     const [filteredCurrency, setfilteredCurrency] = useState('')
     const [currency, setCurrency] = useState(handleCurrency( filteredCurrency, JsonCurrency.data));
+    const [currencyArr, setCurrencyArr] = useState([])
 
     useEffect( ()=>{
         const fetchData = async ()=>{
             const data =  await getCurrencyHandler();
-            console.log(data)
+            // console.log(data)
             if(!data.data && typeof(data.data) === 'string'){ // This will serve Old price
                 setCurrency(JsonCurrency.data)
             }
             else{ // This will serve new price
                 setCurrency(data);
+                setCurrencyArr(data)
             }         
         } 
       
@@ -85,7 +87,7 @@ const PercentageDisplay = (props)=>{
 
     useEffect(()=>{
 
-        setCurrency(handleCurrency(filteredCurrency, JsonCurrency.data))
+        setCurrency(handleCurrency(filteredCurrency, currencyArr))
         return () =>{
             window.removeEventListener('change', setfilteredCurrency)
         }
