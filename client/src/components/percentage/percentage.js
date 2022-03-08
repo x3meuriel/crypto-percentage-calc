@@ -116,7 +116,9 @@ const PercentageDisplay = (props)=>{
                 </Col>
 
                 <Col xs= {12}>
-                     <div id ='result' > - {result.negativePercentage} {'<<<<'} and  {'>>>>'} + {result.positivePercentage}  </div>
+                     <div id ='result' >  {result.negativePercentage.toFixed(3) } {'<<<<'} LB/UB 
+                          {' >>>>'}  {result.positivePercentage.toFixed(3)} 
+                     </div>
                 </Col>
             </Card>
 
