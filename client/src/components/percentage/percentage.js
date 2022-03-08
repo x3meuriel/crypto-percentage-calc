@@ -55,6 +55,12 @@ const PercentageDisplay = (props)=>{
     const [amount, setAmount] = useState(100)
     const [percentage, setPercentage] = useState(10)
     let [result, setResult] = useState(percentageHandler(amount, percentage))
+
+    const handleSearch = ()=> {
+        const search = document.getElementById('search');
+        search.value = '';
+    }
+    
    
     useEffect(()=>{
         setResult(percentageHandler(amount, percentage))
@@ -65,7 +71,7 @@ const PercentageDisplay = (props)=>{
     
     const [currencyName, setCurrencyName] = useState('Currency')
     const [filteredCurrency, setfilteredCurrency] = useState('')
-    const [currency, setCurrency] = useState(handleCurrency( filteredCurrency, JsonCurrency.data));
+    const [currency, setCurrency] = useState([]);
     const [currencyArr, setCurrencyArr] = useState([])
 
     useEffect( ()=>{
@@ -74,6 +80,7 @@ const PercentageDisplay = (props)=>{
             // console.log(data)
             if(!data.data && typeof(data.data) === 'string'){ // This will serve Old price
                 setCurrency(JsonCurrency.data)
+                setCurrencyArr(JsonCurrency.data)
             }
             else{ // This will serve new price
                 setCurrency(data);
@@ -87,9 +94,13 @@ const PercentageDisplay = (props)=>{
 
     useEffect(()=>{
 
+
         setCurrency(handleCurrency(filteredCurrency, currencyArr))
+
+
         return () =>{
-            window.removeEventListener('change', setfilteredCurrency)
+            window.removeEventListener('change', setfilteredCurrency);
+            window.removeEventListener('click', handleSearch);
         }
 
     }, [filteredCurrency])
@@ -135,8 +146,9 @@ const PercentageDisplay = (props)=>{
                 
 
                 <Dropdown.Menu >
-                   <Form.Control  type = 'search' placeholder='Search Currency' onChange = {(event)=> { 
+                   <Form.Control id = "search"  type = 'search' placeholder='Search Currency' onChange = {(event)=> { 
                         setfilteredCurrency(event.target.value)
+                        
                      }
                    }/>    
                 { 
@@ -144,7 +156,12 @@ const PercentageDisplay = (props)=>{
                     typeof(currency) === 'object' ? 
                     currency.map((item) =>{
                     return <Dropdown.Item
-                      key ={item.id} onClick = {()=> {setCurrencyName(item.symbol); setAmount(item.quote.USD.price)} }
+                      key ={item.id} onClick = {()=> {
+                        setCurrencyName(item.symbol); 
+                        setAmount(item.quote.USD.price)
+                        handleSearch();
+                        }
+                    }
                       href="#"> 
                       {item.symbol}
                       </Dropdown.Item>
