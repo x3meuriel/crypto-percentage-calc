@@ -1,6 +1,6 @@
 #result {
   margin: 1.5rem 0px;
-  padding: 0.3rem;
+  padding: 0.3em;
   background-color: #198754;
   border-radius: 1.5px;
   box-shadow: 2px 2px 1px #040404;
@@ -10,4 +10,15 @@
   display: flex;
   text-align: center;
   justify-content: center;
+}
+
+.form-group {
+  display: flex;
+  align-items: self-end;
+}
+
+.form-label {
+  color: "#198754";
+  font-weight: "bold";
+  margin-right: 0.5em;
 }

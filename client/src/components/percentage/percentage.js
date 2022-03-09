@@ -125,16 +125,16 @@ const PercentageDisplay = (props)=>{
          <Form>
             <Row>
                 <Col xs = {12} md ={6}>
-                <Form.Group className = 'mb-3' xs = {2} controlId = 'formAmount'> 
-                        <Form.Label> $ </Form.Label>
-                        <Form.Control type = 'text' value = {amount} onChange = {(event)=>setAmount(event.target.value) }/>     
+                <Form.Group className = 'mb-3  form-group' xs = {12} controlId = 'formAmount'> 
+                        <Form.Label xs = {2}  className = 'form-label'> $ </Form.Label>
+                        <Form.Control xs = {10} type = 'text' value = {amount} onChange = {(event)=>setAmount(event.target.value) }/>     
                 </Form.Group>
                 </Col>
 
                 <Col xs = {12} md = {6}>
-                <Form.Group className = 'mb-3' xs = {2} controlId = 'formPercentage'> 
-                        <Form.Label> % </Form.Label>
-                        <Form.Control  type = 'text' value = {percentage} onChange = {(event)=>setPercentage(event.target.value) }/>     
+                <Form.Group className = 'mb-3 form-group' xs = {12} controlId = 'formPercentage'> 
+                        <Form.Label xs = {4} className = 'form-label'> % </Form.Label>
+                        <Form.Control xs = {8} type = 'text' value = {percentage} onChange = {(event)=>setPercentage(event.target.value) }/>     
                 </Form.Group>
                 </Col>
 
