@@ -12,12 +12,12 @@
   justify-content: center;
 }
 
-.form-group {
+.form-cont {
   display: flex;
   align-items: self-end;
 }
 
-.form-label {
+.form-detail {
   color: "#198754";
   font-weight: "bold";
   margin-right: 0.5em;
